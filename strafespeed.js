@@ -17,7 +17,8 @@ breeze.registerModule("Test", "Test.", {
       motion: function(event) {
       var sprinting = 0
       if (mc.getPlayer().isSprinting()) sprinting = 1
-      speed = (this.speedtest.getValue()*0.2805)
+      speed = (this.speedtest.getValue()*0.21585)
+      forwardspeed = (this.speedtest.getValue()*0.2805)
       yaw = mc.getPlayer().getLastYaw()
       deg = ((yaw-360*Math.floor(yaw/360)))
       var fb = 0
@@ -31,20 +32,20 @@ breeze.registerModule("Test", "Test.", {
          event.setZ(0);
       }
       if (fb == 1 && strafe == 0){
-         event.setX(-Math.sin(degrees_to_radians(deg))*speed);
-         event.setZ(Math.cos(degrees_to_radians(deg))*speed);
+         event.setX(-Math.sin(degrees_to_radians(deg))*forwardspeed);
+         event.setZ(Math.cos(degrees_to_radians(deg))*forwardspeed);
       }
       if (fb == -1 && strafe == 0){
          event.setX(-Math.sin(degrees_to_radians(deg+180))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg+180))*speed);
       }
       if (fb == 1 && strafe == 1){
-         event.setX(-Math.sin(degrees_to_radians(deg+45))*speed);
-         event.setZ(Math.cos(degrees_to_radians(deg+45))*speed);
+         event.setX(-Math.sin(degrees_to_radians(deg+45))*forwardspeed);
+         event.setZ(Math.cos(degrees_to_radians(deg+45))*forwardspeed);
       }
       if (fb == 1 && strafe == -1){
-         event.setX(-Math.sin(degrees_to_radians(deg-45))*speed);
-         event.setZ(Math.cos(degrees_to_radians(deg-45))*speed);
+         event.setX(-Math.sin(degrees_to_radians(deg-45))*forwardspeed);
+         event.setZ(Math.cos(degrees_to_radians(deg-45))*forwardspeed);
       }
       if (fb == -1 && strafe == 1){
          event.setX(-Math.sin(degrees_to_radians(deg+180-45))*speed);
