@@ -13,6 +13,10 @@ function degrees_to_radians(degrees)
   return degrees * (pi/180);
 }
 breeze.registerModule("Test", "Test.", {
+      w: new KeyBindSetting("forward","what key to use for forward"),
+      s: new KeyBindSetting("backward","what key to use for backward"),
+      a: new KeyBindSetting("left","what key to use for left"),
+      d: new KeyBindSetting("right","what key to use for right"),
       speedtest: new DoubleSetting('Speedtest', 'Salalalla.', 1, 1, 10),
       motion: function(event) {
       var sprinting = 0
@@ -22,10 +26,10 @@ breeze.registerModule("Test", "Test.", {
       deg = ((yaw-360*Math.floor(yaw/360)))
       var fb = 0
       var strafe = 0
-      if (w.isDown()) fb += 1
-      if (s.isDown()) fb -= 1
-      if (a.isDown()) strafe -= 1
-      if (d.isDown()) strafe += 1
+      if (this.w.getValue().isDown()) fb += 1
+      if (this.s.getValue().isDown()) fb -= 1
+      if (this.a.getValue().isDown()) strafe -= 1
+      if (this.d.getValue().isDown()) strafe += 1
       if (fb == 0 && strafe == 0){
          event.setX(0);
          event.setZ(0);
