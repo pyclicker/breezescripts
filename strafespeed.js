@@ -2,24 +2,20 @@
 name: strafespeed
 author: Shoffli, Wallhacks and Tygozegthoi for the trigonometry
 */
-const w = new KeyBind(17)
-const a = new KeyBind(30)
-const s = new KeyBind(31)
-const d = new KeyBind(32)
 var timer = Timer()
-function degrees_to_radians(degrees)
-{
+function degrees_to_radians(degrees){
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-breeze.registerModule("Test", "Test.", {
-      w: new KeyBindSetting("forward","what key to use for forward"),
-      s: new KeyBindSetting("backward","what key to use for backward"),
-      a: new KeyBindSetting("left","what key to use for left"),
-      d: new KeyBindSetting("right","what key to use for right"),
+breeze.registerModule("Strafe Speed", "A speed which you can strafe with", {
+      w: new KeyBindSetting("Forward","what key to use for forward"),
+      s: new KeyBindSetting("Backward","what key to use for backward"),
+      a: new KeyBindSetting("Left","what key to use for left"),
+      d: new KeyBindSetting("Right","what key to use for right"),
+      jump: BooleanSetting('Jump','jumps when on ground',true),
       speedtest: new DoubleSetting('Speedtest', 'Salalalla.', 1, 1, 10),
-      alwayssprint: BooleanSetting('multidirectional sprint','sprints in multiple directions when not posible',false),
-      sendsprint: BooleanSetting('multidirectional sprint sending','sends sprint packets when going in multiple directions even though it is not posible',false),
+      alwayssprint: BooleanSetting('Multidirectional Sprint','Sprints in multiple directions when not posible',false),
+      sendsprint: BooleanSetting('Multidirectional Sprint sending','Sends sprint packets when going in multiple directions even though it is not posible',false),
       motion: function(event) {
       var sprinting = 0
       if (mc.getPlayer().isSprinting()) sprinting = 1
@@ -50,13 +46,13 @@ breeze.registerModule("Test", "Test.", {
       }
       if (fb == 1 && strafe == 1){
         mc.getPlayer().setSprinting(true)
-         event.setX(-Math.sin(degrees_to_radians(deg+45))*forwardspeed);
-         event.setZ(Math.cos(degrees_to_radians(deg+45))*forwardspeed);
+         event.setX(-Math.sin(degrees_to_radians(deg+45))*0.2865);
+         event.setZ(Math.cos(degrees_to_radians(deg+45))*0.2865);
       }
       if (fb == 1 && strafe == -1){
         mc.getPlayer().setSprinting(true)
-         event.setX(-Math.sin(degrees_to_radians(deg-45))*forwardspeed);
-         event.setZ(Math.cos(degrees_to_radians(deg-45))*forwardspeed);
+         event.setX(-Math.sin(degrees_to_radians(deg-45))*0.2865);
+         event.setZ(Math.cos(degrees_to_radians(deg-45))*0.2865);
       }
       if (fb == -1 && strafe == 1){
         if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
@@ -77,6 +73,10 @@ breeze.registerModule("Test", "Test.", {
         if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg-90))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg-90))*speed);
+      }
+      if (mc.getPlayer().onGround() && this.jump.getValue()) {
+         event.setY(.4)
+         breeze.log('jump')
       }
     }
 });
