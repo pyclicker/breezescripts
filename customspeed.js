@@ -17,7 +17,6 @@ function degrees_to_radians(degrees)
 breeze.registerModule("CustomSpeed", "A customisable speed.", {
       speed: new DoubleSetting('Speed', 'The speed used.', 1, 0.5, 10),
       jump: BooleanSetting('Jump','Jumps when on ground.', false),
-      inv: BooleanSetting('Check Inv','Checks the disallows you to walk when in inventory', false),
       motion: function(event) {
       speed = this.speed.getValue()*0.2805
       yaw = mc.getPlayer().getLastYaw()
@@ -69,7 +68,7 @@ breeze.registerModule("CustomSpeed", "A customisable speed.", {
       }
     },
     tick: function() {
-      if (mc.getPlayer().onGround() && (!mc.isGuiOpen() || this.inv.getValue())&& this.jump.getValue() && (w.isDown() || a.isDown() || s.isDown() || d.isDown())) {
+      if (mc.getPlayer().onGround() && !mc.isGuiOpen()&& this.jump.getValue() && (w.isDown() || a.isDown() || s.isDown() || d.isDown())) {
         player = mc.getPlayer()
         player.jump()
       }
