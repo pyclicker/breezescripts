@@ -74,9 +74,11 @@ breeze.registerModule("Strafe Speed", "A speed which you can strafe with", {
          event.setX(-Math.sin(degrees_to_radians(deg-90))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg-90))*speed);
       }
+    },
+    tick: function() {
       if (mc.getPlayer().onGround() && this.jump.getValue()) {
-         event.setY(.4)
-         breeze.log('jump')
+        player = mc.getPlayer()
+        player.jump()
       }
     }
 });
