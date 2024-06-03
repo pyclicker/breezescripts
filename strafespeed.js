@@ -1,6 +1,6 @@
 /*
-name: CustomSpeed
-author: Shoffli
+name: Strafespeed
+author: Shoffli, Wallhacks and Tygozegthoi for the trigonometry
 */
 
 const w = new KeyBind(17)
@@ -14,7 +14,7 @@ function degrees_to_radians(degrees)
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-breeze.registerModule("CustomSpeed", "Some more speed modes.", {
+breeze.registerModule("Customspeed", "Some more speed modes.", {
       speed: new DoubleSetting('Speed', 'The speed used.', 1, 0.5, 10),
       jump: BooleanSetting('Jump','Jumps when on ground.', false),
       motion: function(event) {
