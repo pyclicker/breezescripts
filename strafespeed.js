@@ -30,47 +30,48 @@ breeze.registerModule("Strafe Speed", "A speed which you can strafe with", {
       if (this.s.getValue().isDown()) fb -= 1
       if (this.a.getValue().isDown()) strafe -= 1
       if (this.d.getValue().isDown()) strafe += 1
+      var player = mc.getPlayer()
       if (fb == 0 && strafe == 0){
          event.setX(0);
          event.setZ(0);
       }
       if (fb == 1 && strafe == 0){
-          mc.getPlayer().setSprinting(true)
+         player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg))*forwardspeed);
          event.setZ(Math.cos(degrees_to_radians(deg))*forwardspeed);
       }
       if (fb == -1 && strafe == 0){
-        if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
+        if (this.sendsprint.getValue()) player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg+180))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg+180))*speed);
       }
       if (fb == 1 && strafe == 1){
-        mc.getPlayer().setSprinting(true)
+        player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg+45))*0.2865);
          event.setZ(Math.cos(degrees_to_radians(deg+45))*0.2865);
       }
       if (fb == 1 && strafe == -1){
-        mc.getPlayer().setSprinting(true)
+        player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg-45))*0.2865);
          event.setZ(Math.cos(degrees_to_radians(deg-45))*0.2865);
       }
       if (fb == -1 && strafe == 1){
-        if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
+        if (this.sendsprint.getValue()) player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg+180-45))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg+180-45))*speed);
       }
       if (fb == -1 && strafe == -1){
-        if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
+        if (this.sendsprint.getValue()) player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg+180+45))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg+180+45))*speed);
       }
       if (fb == 0 && strafe == 1){
-        if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
+        if (this.sendsprint.getValue()) player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg+90))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg+90))*speed);
       }
       if (fb == 0 && strafe == -1){
-        if (this.sendsprint.getValue()) mc.getPlayer().setSprinting(true)
+        if (this.sendsprint.getValue()) player.setSprinting(true)
          event.setX(-Math.sin(degrees_to_radians(deg-90))*speed);
          event.setZ(Math.cos(degrees_to_radians(deg-90))*speed);
       }
